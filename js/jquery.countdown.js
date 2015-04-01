@@ -211,7 +211,9 @@ jQuery.fn.countdown = function(userOptions) {
     // calculate the difference between endTime and present time
     var endDate = userOptions.endTime instanceof Date ? userOptions.endTime : parseRelativeDate(userOptions.endTime, options);
     var diff = endDate.getTime() - (new Date()).getTime();
-  	// and set that as the startTime
+    if(diff < 0 )
+    	diff = 0;
+    // and set that as the startTime
     userOptions.startTime = formatCompute(new Date(diff), options);
     delete userOptions.endTime;
   }
